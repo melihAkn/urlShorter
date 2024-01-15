@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+
+        <p> original url <input type="text" placeholder="url" id="originalURL" required> </p>
+        <!--<p> secret key if you want it <input type="text" > </p> !-->
+        <input type="button" value="short this url" id="sendToTheBackend">
+        <div id="shortURL"></div>
+    </div>
+    <script></script>
+    <script>
+        const originalURL = document.getElementById('originalURL')
+        const sendButton = document.getElementById('sendToTheBackend')
+        const shortURLDIV = document.getElementById('shortURL')
+        const jsonData = {
+            originalURL : originalURL.value
+        }
+        console.log(jsonData)
+        sendButton.addEventListener('click', _ => {
+            console.log("asd")
+            fetch('/shortThis',{
+                method : "POST",
+                headers : {
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                let = url = window.location.href
+                url += data.shortURl
+                shortURLDIV.innerHTML = `
+                <p>${url}</p>
+                
+                `
+                console.log(window.location.href)
+        })
+            .catch(e => console.log(e.message))
+        })
+
+
+    </script>
+</body>
+</html>
