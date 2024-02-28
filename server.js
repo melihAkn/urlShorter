@@ -78,7 +78,7 @@ app.get('/:urlid',async (req,res)=>{
 app.post('/github',async (req,res) => {
 
     const bashScriptPath = '/home/gavin/urls/urlShorter/updateProjectDirectoryOnPushEvent.sh';
-    console.log("webhook try 10")
+    console.log("webhook try 11")
     
   // Bash betiğini çalıştır
   exec(`bash ${bashScriptPath}`, (error, stdout, stderr) => {
