@@ -4,9 +4,10 @@ const router = express.Router()
 const expHbs = require('express-handlebars');
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
+const { exec } = require('child_process');//for bash script run
+
 require('dotenv').config();
 const urlsModel = require('./model/urlModel')
-
 const connectionString = process.env.CONNECTION_STRING
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
@@ -74,12 +75,23 @@ app.get('/:urlid',async (req,res)=>{
     
 })
 
-app.get('github',async (req,res) => {
+app.post('/github',async (req,res) => {
 
+    const bashScriptPath = '/home/gavin/urls/urlShorter/updateProjectDirectoryOnPushEvent.sh';
+
+  // Bash betiğini çalıştır
+  exec(`bash ${bashScriptPath}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Hata oluştu: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
     console.log(req.body)
-    console.log("webhook is workfor not")
-    console.log("webhook is work i think")
-    console.log("webhook work bash is working?")
     res.send('webhook works')
 })
 
