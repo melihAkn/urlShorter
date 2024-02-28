@@ -78,8 +78,7 @@ app.get('/:urlid',async (req,res)=>{
 app.post('/github',async (req,res) => {
 
     const bashScriptPath = '/home/gavin/urls/urlShorter/updateProjectDirectoryOnPushEvent.sh';
-    console.log("webhook try 12")
-    
+    const afterUpdateBashScript = "/home/gavin/urls/urlShorter/afterUpdate.sh"
   // Bash betiğini çalıştır
   exec(`bash ${bashScriptPath}`, (error, stdout, stderr) => {
     if (error) {
@@ -92,9 +91,22 @@ app.post('/github',async (req,res) => {
     }
     console.log(`stdout: ${stdout}`);
   });
-    console.log(req.body)
 
-    res.send('webhook works')
+  exec(`bash ${afterUpdateBashScript}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Hata oluştu: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+
+
+
+    res.send()
 })
 
 
