@@ -91,7 +91,7 @@ app.post('/github',async (req,res) => {
     }
     console.log(`stdout: ${stdout}`);
   });
-
+ 
   exec(`bash ${afterUpdateBashScript}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Hata oluştu: ${error.message}`);
