@@ -92,8 +92,9 @@ app.post('/github',async (req,res) => {
     console.log(`stdout: ${stdout}`);
   });
     console.log(req.body)
+    console.log("dded")
     res.send('webhook works')
-    
+
 })
 
 
