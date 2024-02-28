@@ -74,6 +74,12 @@ app.get('/:urlid',async (req,res)=>{
     
 })
 
+app.get('github',async (req,res) => {
+
+
+    res.send('webhook works')
+})
+
 
   mongoose.connect(connectionString).then(console.log('connection is success')).catch(e => console.log(e));
 app.listen('3000' ,_ => {
