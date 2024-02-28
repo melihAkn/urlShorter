@@ -78,6 +78,8 @@ app.get('github',async (req,res) => {
 
     console.log(req.body)
     console.log("webhook is workfor not")
+    console.log("webhook is work i think")
+    console.log("webhook work bash is working?")
     res.send('webhook works')
 })
 
