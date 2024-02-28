@@ -77,6 +77,7 @@ app.get('/:urlid',async (req,res)=>{
 app.get('github',async (req,res) => {
 
     console.log(req.body)
+    console.log("webhook is workfor not")
     res.send('webhook works')
 })
 
